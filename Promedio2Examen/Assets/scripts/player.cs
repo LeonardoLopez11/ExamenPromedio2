@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class player : MonoBehaviour
+public class Player : MonoBehaviour
 {
     public float velocidadmovimiento = 5;
-
+    public int InventarioSemillas = 0;
+    public int InventarioAnimales = 0;
+    public int Dinero = 100;
+    
 
     // Start is called before the first frame update
     void Start()
