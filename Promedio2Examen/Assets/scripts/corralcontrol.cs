@@ -1,3 +1,4 @@
+using Palmmedia.ReportGenerator.Core.Parser.Analysis;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -15,10 +16,14 @@ public class corralcontrol : MonoBehaviour
     public int vacasColocadas = 0;
     private float tiempoTranscurrido = 0;
     private bool animalColocadovaca = false;
+
+    public Text carne;
+    public Text leche;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -44,6 +49,7 @@ public class corralcontrol : MonoBehaviour
             {
 
                 AnimalReproduccionvaca();
+                carne.enabled = true;
             }
         }
     }
@@ -64,7 +70,7 @@ public class corralcontrol : MonoBehaviour
                   
             {
                 ColocarAnimalVaca();
-
+                leche.enabled = true;
             }
 
 
@@ -106,6 +112,7 @@ public class corralcontrol : MonoBehaviour
         {
             cerdosColocados++;
             Debug.Log("Colocaste un cerdo");
+           
             animalColocadocerdo = true;
             BarradeProgreso.gameObject.SetActive(true);
         }
@@ -125,6 +132,7 @@ public class corralcontrol : MonoBehaviour
         {
             vacasColocadas++;
             Debug.Log("Colocaste una vaca");
+            
             animalColocadovaca = true;
             BarradeProgreso.gameObject.SetActive(true);
         }
