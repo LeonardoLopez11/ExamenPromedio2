@@ -1,16 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class corralcontrol : MonoBehaviour
 {
-    public GameObject animalPrefab;
-    private bool animalColocado = false;
+    public GameObject cerdo;
+    public GameObject vaca;
+    private bool animalColocadocerdo = false;
     public Slider BarradeProgreso;
     public float tiempoReproduccion = 1;
-    public int animalesColocados = 0;
+    public int cerdosColocados = 0;
+    public int vacasColocadas = 0;
     private float tiempoTranscurrido = 0;
+    private bool animalColocadovaca = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +24,7 @@ public class corralcontrol : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (animalColocado)
+        if (animalColocadocerdo)
         {
             tiempoTranscurrido += Time.deltaTime;
             CargarBarraDeProgreso();
@@ -28,7 +32,18 @@ public class corralcontrol : MonoBehaviour
             if (tiempoTranscurrido >= tiempoReproduccion)
             {
                 
-                AnimalReproduccion();
+                AnimalReproduccionCerdo();
+            }
+        }
+        if (animalColocadovaca)
+        {
+            tiempoTranscurrido += Time.deltaTime;
+            CargarBarraDeProgreso();
+
+            if (tiempoTranscurrido >= tiempoReproduccion)
+            {
+
+                AnimalReproduccionvaca();
             }
         }
     }
@@ -36,35 +51,46 @@ public class corralcontrol : MonoBehaviour
     {
         if (other.CompareTag("Jugador"))
         {
-            if (Input.GetMouseButtonDown(0) && !animalColocado)
+            if (Input.GetMouseButtonDown(0) && !animalColocadocerdo)
             {
-                ColocarAnimal();
+                ColocarAnimalCerdo();
                 
             }
 
         }
+        if (other.CompareTag("Jugador"))
+        {
+            if(Input.GetKeyDown(KeyCode.E) && !animalColocadovaca)
+                  
+            {
+                ColocarAnimalVaca();
 
+            }
+
+
+        }
     }
-    void AnimalReproduccion()
+    
+    void AnimalReproduccionCerdo()
     {
-        if (animalesColocados >= 2)
+        if (cerdosColocados >= 2)
         {
 
-            Debug.Log("Conseguiste otro animal!");
-            ColocarAnimal();
-            GameObject nuevoAnimalextra = Instantiate(animalPrefab, transform.position, Quaternion.identity);
+            Debug.Log("Conseguiste otro cerdo");
+            ColocarAnimalCerdo();
+            AnimalExtra();
 
 
-            nuevoAnimalextra.transform.SetParent(transform);
+            
         }
-        GameObject nuevoAnimal = Instantiate(animalPrefab, transform.position, Quaternion.identity);
+        GameObject nuevoAnimalcerdo = Instantiate(cerdo, transform.position, Quaternion.identity);
 
 
-        nuevoAnimal.transform.SetParent(transform);
+        
 
 
         tiempoTranscurrido = 0f;
-        animalColocado = false;
+        animalColocadocerdo = false;
 
 
         BarradeProgreso.gameObject.SetActive(false);
@@ -74,15 +100,68 @@ public class corralcontrol : MonoBehaviour
         float progreso = tiempoTranscurrido / tiempoReproduccion;
         BarradeProgreso.value = progreso;
     }
-    public void ColocarAnimal()
+    public void ColocarAnimalCerdo()
     {
-        if (!animalColocado)
+        if (!animalColocadocerdo)
         {
-            animalesColocados++;
-            Debug.Log("Hay un animal colocado");
-            animalColocado = true;
+            cerdosColocados++;
+            Debug.Log("Colocaste un cerdo");
+            animalColocadocerdo = true;
             BarradeProgreso.gameObject.SetActive(true);
         }
     }
+    void AnimalExtra()
+    {
+        GameObject nuevoAnimalextra = Instantiate(cerdo, transform.position, Quaternion.identity);
+        tiempoTranscurrido = 0f;
+        animalColocadocerdo = false;
+
+
+        BarradeProgreso.gameObject.SetActive(false);
+    }
+    public void ColocarAnimalVaca()
+    {
+        if (!animalColocadovaca)
+        {
+            vacasColocadas++;
+            Debug.Log("Colocaste una vaca");
+            animalColocadovaca = true;
+            BarradeProgreso.gameObject.SetActive(true);
+        }
+    }
+    void AnimalReproduccionvaca()
+    {
+        if (vacasColocadas >= 2)
+        {
+
+            Debug.Log("Conseguiste otra vaca!");
+            ColocarAnimalVaca();
+            AnimalExtraVaca();
+
+
+
+        }
+        GameObject nuevoAnimalvaca = Instantiate(vaca, transform.position, Quaternion.identity);
+
+
+
+
+
+        tiempoTranscurrido = 0f;
+        animalColocadovaca = false;
+
+
+        BarradeProgreso.gameObject.SetActive(false);
+    }
+    void AnimalExtraVaca()
+    {
+        GameObject nuevoAnimalextra = Instantiate(vaca, transform.position, Quaternion.identity);
+        tiempoTranscurrido = 0f;
+        animalColocadovaca = false;
+
+
+        BarradeProgreso.gameObject.SetActive(false);
+    }
 }
+
 
