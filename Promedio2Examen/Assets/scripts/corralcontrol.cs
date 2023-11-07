@@ -9,7 +9,7 @@ public class corralcontrol : MonoBehaviour
     private bool animalColocado = false;
     public Slider BarradeProgreso;
     public float tiempoReproduccion = 1;
-
+    public int animalesColocados = 0;
     private float tiempoTranscurrido = 0;
     // Start is called before the first frame update
     void Start()
@@ -27,6 +27,7 @@ public class corralcontrol : MonoBehaviour
 
             if (tiempoTranscurrido >= tiempoReproduccion)
             {
+                
                 AnimalReproduccion();
             }
         }
@@ -38,6 +39,7 @@ public class corralcontrol : MonoBehaviour
             if (Input.GetMouseButtonDown(0) && !animalColocado)
             {
                 ColocarAnimal();
+                
             }
 
         }
@@ -45,11 +47,20 @@ public class corralcontrol : MonoBehaviour
     }
     void AnimalReproduccion()
     {
+        if (animalesColocados >= 2)
+        {
 
-        GameObject nuevaPlanta = Instantiate(animalPrefab, transform.position, Quaternion.identity);
+            Debug.Log("Conseguiste otro animal!");
+            ColocarAnimal();
+            GameObject nuevoAnimalextra = Instantiate(animalPrefab, transform.position, Quaternion.identity);
 
 
-        nuevaPlanta.transform.SetParent(transform);
+            nuevoAnimalextra.transform.SetParent(transform);
+        }
+        GameObject nuevoAnimal = Instantiate(animalPrefab, transform.position, Quaternion.identity);
+
+
+        nuevoAnimal.transform.SetParent(transform);
 
 
         tiempoTranscurrido = 0f;
@@ -67,6 +78,8 @@ public class corralcontrol : MonoBehaviour
     {
         if (!animalColocado)
         {
+            animalesColocados++;
+            Debug.Log("Hay un animal colocado");
             animalColocado = true;
             BarradeProgreso.gameObject.SetActive(true);
         }
