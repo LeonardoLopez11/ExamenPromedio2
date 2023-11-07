@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Mercado : MonoBehaviour
 {
     public Player player;
-
+    public Text dineroText;
 
     
     public GameObject PanelUI;
@@ -18,17 +18,14 @@ public class Mercado : MonoBehaviour
 
     private bool enTienda = false;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Jugador")) 
         {
            
             enTienda = true;
             MostrarTienda();
-            ComprarSemillas();
-            ComprarAnimal();
-            VenderSemillas();
-            VenderAnimales();
+            
 
         }
     }
@@ -44,8 +41,8 @@ public class Mercado : MonoBehaviour
     private void MostrarTienda()
     {
         PanelUI.SetActive(true);
-        
 
+        dineroText.text = "Dinero: " + player.Dinero.ToString();
 
         
     }
@@ -98,7 +95,7 @@ public class Mercado : MonoBehaviour
     public void VenderAnimales()
     {
 
-        if (player.InventarioAnimales > 0) { }
+        if (player.InventarioAnimales > 0) 
         {
 
             player.Dinero += 10;

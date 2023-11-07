@@ -938,6 +938,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1693260629}
+  dineroText: {fileID: 1373676224}
   PanelUI: {fileID: 1338697107}
   precioSemillas: 0
   precioAnimal: 0
@@ -1218,10 +1219,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5e0af47ec84a034cabe7e1fa0fcd997, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animalPrefab: {fileID: 371535509655665724, guid: 6c05a928beda3044992f080879c6586f, type: 3}
+  cerdo: {fileID: 2381920078431942772, guid: 47be58390b3435744b7f827968889907, type: 3}
+  vaca: {fileID: 371535509655665724, guid: 6c05a928beda3044992f080879c6586f, type: 3}
   BarradeProgreso: {fileID: 239495542}
   tiempoReproduccion: 1
-  animalesColocados: 0
+  cerdosColocados: 0
+  vacasColocadas: 0
 --- !u!65 &521600391
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2545,6 +2548,7 @@ RectTransform:
   - {fileID: 1712907924}
   - {fileID: 1782068329}
   - {fileID: 1021219939}
+  - {fileID: 1373676223}
   m_Father: {fileID: 1338697113}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3065,6 +3069,86 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1369693285}
+  m_CullTransparentMesh: 1
+--- !u!1 &1373676222
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1373676223}
+  - component: {fileID: 1373676225}
+  - component: {fileID: 1373676224}
+  m_Layer: 5
+  m_Name: dinerotexto
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1373676223
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1373676222}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1226247660}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -63.1, y: -104.3}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1373676224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1373676222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 20
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 40
+    m_Alignment: 1
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Dinero:'
+--- !u!222 &1373676225
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1373676222}
   m_CullTransparentMesh: 1
 --- !u!1 &1413917632
 GameObject:
@@ -4110,7 +4194,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 371535509655665724, guid: 6c05a928beda3044992f080879c6586f, type: 3}
       propertyPath: m_Name
-      value: oveja
+      value: vaca
       objectReference: {fileID: 0}
     - target: {fileID: 6849772037012397532, guid: 6c05a928beda3044992f080879c6586f, type: 3}
       propertyPath: m_RootOrder
