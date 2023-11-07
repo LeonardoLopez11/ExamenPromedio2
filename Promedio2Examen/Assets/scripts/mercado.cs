@@ -16,14 +16,14 @@ public class Mercado : MonoBehaviour
     public int precioAnimal = 20;
     
 
-    private bool enTienda = false;
+    
 
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Jugador")) 
         {
            
-            enTienda = true;
+            
             MostrarTienda();
             
 
@@ -33,7 +33,7 @@ public class Mercado : MonoBehaviour
     {
         if (other.CompareTag("Jugador"))
         {
-            enTienda = false;
+            
             LimpiarTienda();
             
         }
