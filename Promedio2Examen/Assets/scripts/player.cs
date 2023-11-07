@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float velocidadmovimiento = 5;
+    public float velocidadmovimiento = 50;
     public int InventarioSemillas = 0;
     public int InventarioAnimales = 0;
     public int Dinero = 100;

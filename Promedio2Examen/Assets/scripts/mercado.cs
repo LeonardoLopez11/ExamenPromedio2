@@ -4,25 +4,32 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.UI;
 
-public class mercado : MonoBehaviour
+public class Mercado : MonoBehaviour
 {
     public Player player;
+
+
     
     public GameObject PanelUI;
-    public string mensajeBienvenida = "Bienvenido. ¿Qué te gustaría comprar?";
-    public int precioSemillas = 0; 
-    public int precioAnimal = 0;
     
+    public int precioSemillas = 10; 
+    public int precioAnimal = 20;
+    
+
     private bool enTienda = false;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Jugador")) 
         {
+           
             enTienda = true;
-            MostrarMensaje(mensajeBienvenida);
+            MostrarTienda();
             ComprarSemillas();
             ComprarAnimal();
+            VenderSemillas();
+            VenderAnimales();
+
         }
     }
     private void OnTriggerExit(Collider other)
@@ -30,49 +37,84 @@ public class mercado : MonoBehaviour
         if (other.CompareTag("Jugador"))
         {
             enTienda = false;
-            LimpiarMensaje();
+            LimpiarTienda();
+            
         }
     }
-    private void MostrarMensaje(string mensaje)
+    private void MostrarTienda()
     {
         PanelUI.SetActive(true);
         
+
+
         
     }
 
-    private void LimpiarMensaje()
+    private void LimpiarTienda()
     {
         PanelUI.SetActive(false);
     }
 
-    private void ComprarSemillas()
+    public void ComprarSemillas()
     {
         if (player.Dinero >= precioSemillas)
         {
-            
-            player.Dinero -= precioSemillas;
-            Debug.Log("Has comprado semillas");
-            player.InventarioSemillas++;
+
+            if (player.Dinero >= precioSemillas)
+            {
+
+                player.Dinero -= 10; ;
+                Debug.Log("Has comprado semillas");
+                player.InventarioSemillas++;
+                
+            }
         }
     }
 
-    private void ComprarAnimal()
+    public void ComprarAnimal()
     {
         if (player.Dinero >= precioAnimal)
         {
-            
+            player.Dinero -= 20;
             player.Dinero -= precioAnimal;
             Debug.Log("Compraste un animal");
             player.InventarioAnimales++;
         }
     }
-    // Start is called before the first frame update
+    public void VenderSemillas()
+    {
+        if (player.InventarioSemillas > 0)
+        {
+
+            player.Dinero+=10;
+            Debug.Log("Vendiste Semillas");
+
+            player.InventarioSemillas--;
+
+        }
+
+    }
+
+    public void VenderAnimales()
+    {
+
+        if (player.InventarioAnimales > 0) { }
+        {
+
+            player.Dinero += 10;
+            Debug.Log("Vendiste animales");
+            player.InventarioAnimales--;
+        }
+
+    }
     void Start()
     {
         
+
     }
 
-    // Update is called once per frame
+
+
     void Update()
     {
         
